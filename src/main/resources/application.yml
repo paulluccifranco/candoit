@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: Candoit
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        show_sql: false
+        format_sql: false
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/BACK
+    username: root
+    password: candoit
+  data:
+    mongodb:
+      uri: mongodb://candoit:candoit@localhost:27017/candoit
+
+server:
+  port: 8080
+  servlet:
+    context-path: /Candoit
