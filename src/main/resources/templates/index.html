@@ -6,5 +6,11 @@
 </head>
 <body>
 
+<ul>
+    <div th:each="city : ${cities.getCityList()}">
+        <span th:text="'Nombre: '+${city.getName()}"></span>
+    </div>
+</ul>
+
 </body>
 </html>
