@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -8,7 +9,7 @@
 
 <ul>
     <div th:each="city : ${cities.getCityList()}">
-        <span th:text="'Nombre: '+${city.getName()}"></span>
+        <span th:text="'Nombre: '+${city.getName()}" sec:authorize="hasRole('ADMIN')"></span>
     </div>
 </ul>
 

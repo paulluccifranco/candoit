@@ -31,5 +31,5 @@ public class User implements Serializable {
     private String password;
     @ManyToOne
     @JoinColumn(name = "ROLE_ID")
-    private transient Role role;
+    private Role role;
 }
