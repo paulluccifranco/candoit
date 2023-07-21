@@ -5,13 +5,49 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<style>
+    .cities-container{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 10px;
+        row-gap: 10px;
+    }
+
+    .city {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid black;
+    }
+
+    .weather {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid black;
+        background-color: aquamarine;
+    }
+
+
+</style>
 <body>
-
-<ul>
-    <div th:each="city : ${cities.getCityList()}">
-        <span th:text="'Nombre: '+${city.getName()}" sec:authorize="hasRole('ADMIN')"></span>
+<h3>Usuario, <span sec:authentication="name"></span></h3>
+<div>Editar Usuario</div>
+<div sec:authorize="hasRole('ADMIN')">Control Usuarios</div>
+<div class="cities-container">
+    <div th:each="city : ${cities.getCityList()}" class="city">
+        <span th:text="'Ciudad: '+${city.getName()}"></span>
+        <span th:text="'Provincia: '+${city.getProvince()}"></span>
+        <span th:text="'Longitud: '+${city.getLon()}"></span>
+        <span th:text="'Latitud: '+${city.getLat()}"></span>
+        <div th:with="wheather=${city.getWeather()}" sec:authorize="hasRole('ADMIN')" class="weather">
+            <span th:text="'Clima: '+${wheather.getDescription()}"></span>
+            <span th:text="'Humedad: '+${wheather.getHumidity()}"></span>
+            <span th:text="'Presion: '+${wheather.getPressure()}"></span>
+            <span th:text="'Visibilidad: '+${wheather.getVisibility()}"></span>
+            <span th:text="'Velocidad de Viento: '+${wheather.getWind_speed()}"></span>
+            <span th:text="'Temperatura: '+${wheather.getTempDesc()}"></span>
+            <span th:text="'Wing: '+${wheather.getWing_deg()}"></span>
+        </div>
     </div>
-</ul>
-
+</div>
 </body>
 </html>
