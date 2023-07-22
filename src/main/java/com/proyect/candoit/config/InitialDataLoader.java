@@ -37,11 +37,9 @@ public class InitialDataLoader implements CommandLineRunner {
             user.setPassword(passwordEncoder.encode("123456"));
             userRepository.save(user);
         }
-        if(citiesRepository.count() == 0) {
-            Cities cities = new Cities();
-            cities.setCityList(apiConsumer.getData());
-            cities.setDate(new Date());
-            citiesRepository.save(cities);
-        }
+        Cities cities = new Cities();
+        cities.setCityList(apiConsumer.getData());
+        cities.setDate(new Date());
+        citiesRepository.save(cities);
     }
 }

@@ -30,8 +30,8 @@
 </style>
 <body>
 <h3>Usuario, <span sec:authentication="name"></span></h3>
-<div>Editar Usuario</div>
-<div sec:authorize="hasRole('ADMIN')">Control Usuarios</div>
+<button><a th:href="@{/logout}">LogOut</a></button>
+<button sec:authorize="hasRole('ADMIN')"><a th:href="@{/users}">Control Usuarios</a></button>
 <div class="cities-container">
     <div th:each="city : ${cities.getCityList()}" class="city">
         <span th:text="'Ciudad: '+${city.getName()}"></span>

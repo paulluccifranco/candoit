@@ -7,4 +7,5 @@ import java.util.List;
 public interface CitiesService {
 
     Cities getLastCitiesInfo();
+    void save(Cities cities);
 }

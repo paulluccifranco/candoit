@@ -5,13 +5,46 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<script th:inline="javascript">
+    function eliminarElemento(id) {
+        var confirmacion = confirm("¿Estás seguro de que deseas eliminar este elemento?");
+        if (confirmacion) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("DELETE", "/Candoit/users/" + id, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        alert("Elemento eliminado correctamente");
+                        setTimeout(function() {
+                            window.location.href = '/Candoit/users';
+                        }, 2000);
+                    } else {
+                        alert("Error al eliminar el elemento");
+                    }
+                }
+            };
+            xhr.send();
+        }
+    }
+</script>
 <body>
+<button><a th:href="@{/index}">Volver a Pantalla Principal</a></button>
+<button><a th:href="@{/users/new}">Crear Usuario</a></button>
 <table>
     <tr>
-        <th>Nombre</th>
+        <th>Usuario</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
     </tr>
     <tr th:each="user : ${users}">
         <td th:text="${user.getUsername()}"></td>
+        <td>
+            <button><a th:href="@{/users/} + ${user.getId()}">Editar</a></button>
+        </td>
+        <td>
+            <button type="button" th:attr="id=${user.getId()}" onclick="eliminarElemento(this.getAttribute('id'))">Eliminar</button>
+        </td>
     </tr>
 
 </table>

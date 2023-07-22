@@ -17,4 +17,9 @@ public class CitiesServiceImpl implements CitiesService{
     public Cities getLastCitiesInfo() {
         return citiesRepository.findFirstByOrderByDateDesc();
     }
+
+    @Override
+    public void save(Cities cities) {
+        citiesRepository.save(cities);
+    }
 }

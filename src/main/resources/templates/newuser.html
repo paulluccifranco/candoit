@@ -5,7 +5,51 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<script>
+    function actualizarUsuario() {
+        const form = document.getElementById('newForm');
+        const formData = new FormData(form);
+
+        fetch('/Candoit/users', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert('Usuario actualizado correctamente.');
+                    setTimeout(function() {
+                        window.location.href = '/Candoit/users';
+                    }, 100);
+                } else if (response.status == 400) {
+                    alert('El nombre de usuario ya esta en uso');
+                } else {
+                    alert('Error al crear el usuario')
+                }
+            })
+            .catch(error => {
+                console.error('Error al realizar la solicitud:', error);
+                alert('Error al actualizar el usuario.');
+            });
+    }
+</script>
 <body>
+<h1>Crear Nuevo Usuario</h1>
+<form id="newForm" th:object="${user}">
+    <input type="hidden" name="id" th:field="*{id}"/>
+    <label>Username:</label>
+    <input type="text" id="username" name="username" th:field="*{username}" required />
+
+    <label>Password:</label>
+    <input type="password" id="password" name="password" th:field="*{password}" required />
+
+    <label>Rol:</label>
+    <select th:field="*{roleId}">
+        <option th:value=1 th:text="'Admin'"></option>
+        <option th:value=2 th:text="'Consultor'"></option>
+    </select>
+
+    <button type="button" onclick="actualizarUsuario()">Guardar Cambios</button>
+</form>
 
 </body>
 </html>
