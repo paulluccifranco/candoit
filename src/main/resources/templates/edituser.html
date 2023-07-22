@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -19,13 +20,12 @@
                     alert('Usuario actualizado correctamente.');
                     setTimeout(function() {
                         window.location.href = '/Candoit/users';
-                    }, 2000);
+                    }, 100);
                 } else {
                     alert('Error al actualizar el usuario.');
                 }
             })
             .catch(error => {
-                console.error('Error al realizar la solicitud:', error);
                 alert('Error al actualizar el usuario.');
             });
     }
@@ -42,7 +42,7 @@
 
     <label>Rol:</label>
     <select th:field="*{roleId}">
-        <option th:value=1 th:text="'Admin'"></option>
+        <option th:value=1 th:text="'Administrador'"></option>
         <option th:value=2 th:text="'Consultor'"></option>
     </select>
 

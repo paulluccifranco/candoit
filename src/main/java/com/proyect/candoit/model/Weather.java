@@ -1,5 +1,6 @@
 package com.proyect.candoit.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,11 +16,13 @@ public class Weather {
     private BigDecimal pressure;
     private BigDecimal st;
     private BigDecimal visibility;
-    private BigDecimal wind_speed;
+    @JsonProperty("wind_speed")
+    private BigDecimal windSpeed;
     private Integer id;
     private String description;
     private BigDecimal temp;
-    private String wing_deg;
+    @JsonProperty("wing_deg")
+    private String wingDeg;
     private String tempDesc;
 
 

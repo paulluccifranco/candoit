@@ -1,5 +1,6 @@
 package com.proyect.candoit.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,7 +15,8 @@ public class City {
     private BigDecimal dist;
     private Integer lid;
     private Integer fid;
-    private Integer int_number;
+    @JsonProperty("int_number")
+    private Integer intNumber;
     private String name;
     private String province;
     private BigDecimal lat;

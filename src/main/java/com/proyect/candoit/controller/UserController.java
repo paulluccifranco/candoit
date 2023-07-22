@@ -4,8 +4,6 @@ import com.proyect.candoit.dto.UserDto;
 import com.proyect.candoit.mapper.UserMapper;
 import com.proyect.candoit.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.dao.DuplicateKeyException;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,46 +13,45 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
-
+@RequestMapping("/users")
 public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("/users")
+    @GetMapping("")
     public String usersPage(Model model) {
-        List<UserDto> users = userService.getAllUsers().stream().map(UserMapper::mapToUserDto).collect(Collectors.toList());
+        List<UserDto> users = userService.getAllUsers().stream().map(UserMapper::mapToUserDto).toList();
         model.addAttribute("users", users);
         return "users";
     }
 
-    @GetMapping("/users/new")
+    @GetMapping("/new")
     public String createUserPage(Model model) {
         model.addAttribute("user", new UserDto());
         return "newuser";
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/{id}")
     public String editUserPage(@PathVariable Long id, Model model) {
         UserDto userDto = UserMapper.mapToUserDto(userService.getUserById(id));
         model.addAttribute("user", userDto);
         return "edituser";
     }
 
-    @DeleteMapping("/users/{id}")
-    public ResponseEntity deleteUser(@PathVariable Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable Long id) {
         userService.removeUser(id);
         return ResponseEntity.ok("");
     }
 
-    @PostMapping("/users")
-    public ResponseEntity saveUser(@ModelAttribute UserDto userDto, Model model){
+    @PostMapping("")
+    public ResponseEntity<String> saveUser(@ModelAttribute UserDto userDto){
         try {
             userService.saveUser(userDto);
         }catch(Exception e) {
@@ -63,8 +60,8 @@ public class UserController {
         return ResponseEntity.ok("");
     }
 
-    @PutMapping("/users")
-    public ResponseEntity editUser(@ModelAttribute UserDto userDto, Model model) {
+    @PutMapping("")
+    public ResponseEntity<String> editUser(@ModelAttribute UserDto userDto) {
         userService.updateUser(userDto);
         return ResponseEntity.ok("");
     }

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -43,9 +44,9 @@
             <span th:text="'Humedad: '+${wheather.getHumidity()}"></span>
             <span th:text="'Presion: '+${wheather.getPressure()}"></span>
             <span th:text="'Visibilidad: '+${wheather.getVisibility()}"></span>
-            <span th:text="'Velocidad de Viento: '+${wheather.getWind_speed()}"></span>
+            <span th:text="'Velocidad de Viento: '+${wheather.getWindSpeed()}"></span>
             <span th:text="'Temperatura: '+${wheather.getTempDesc()}"></span>
-            <span th:text="'Wing: '+${wheather.getWing_deg()}"></span>
+            <span th:text="'Direccion: '+${wheather.getWingDeg()}"></span>
         </div>
     </div>
 </div>

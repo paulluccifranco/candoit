@@ -1,0 +1,46 @@
+version: '3.3'
+services:
+  mysql-db:
+    image: mysql:8.0.30
+    container_name: mysql-candoit
+    restart: always
+    environment:
+      MYSQL_DATABASE: CANDOIT
+      MYSQL_USER: candoit
+      MYSQL_PASSWORD: candoit
+      MYSQL_ROOT_PASSWORD: candoit
+      MYSQL_ROOT_HOST: '%'
+    expose:
+      - 3306
+    volumes:
+      - ./db_data:/var/lib/mysql
+    networks:
+      - candoit_network
+  mongo:
+    image: mongo:latest
+    container_name: mongo-candoit
+    restart: always
+    expose:
+      - 27017
+    volumes:
+      - ./mongo_data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=candoit
+      - MONGO_INITDB_ROOT_PASSWORD=candoit
+    networks:
+      - candoit_network
+  app:
+    build:
+     dockerfile: Dockerfile
+    container_name: candoit-app
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql-db
+    networks:
+      - candoit_network
+
+networks:
+  candoit_network:
+    driver: bridge

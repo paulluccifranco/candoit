@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/BACK?allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://localhost:3306/CANDOIT?allowPublicKeyRetrieval=true&useSSL=false
     username: root
     password: candoit
   data:

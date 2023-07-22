@@ -1,7 +1,6 @@
 package com.proyect.candoit.service;
 
 import com.proyect.candoit.dto.UserDto;
-import com.proyect.candoit.mapper.UserMapper;
 import com.proyect.candoit.model.User;
 import com.proyect.candoit.repository.RoleRepository;
 import com.proyect.candoit.repository.UserRepository;
@@ -9,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

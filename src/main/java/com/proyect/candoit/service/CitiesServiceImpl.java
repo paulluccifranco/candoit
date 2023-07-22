@@ -5,8 +5,6 @@ import com.proyect.candoit.repository.CitiesRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 @RequiredArgsConstructor
 public class CitiesServiceImpl implements CitiesService{
